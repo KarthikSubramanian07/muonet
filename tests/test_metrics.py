@@ -23,9 +23,13 @@ def test_normalize_all_zero():
     assert np.all(normalize_volume(np.zeros((4, 4, 4))) == 0.0)
 
 
-def test_psnr_identical_is_infinite():
+def test_psnr_identical_is_finite_cap():
+    # A perfect match returns a large finite value, never inf, so the numbers
+    # stay JSON-safe for the browser viewer.
     v = np.random.default_rng(0).random((8, 8, 8))
-    assert psnr(v, v) == float("inf")
+    p = psnr(v, v)
+    assert np.isfinite(p)
+    assert p >= 100.0 - 1e-9
 
 
 def test_psnr_known_mse():

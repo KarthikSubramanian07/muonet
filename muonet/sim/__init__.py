@@ -7,11 +7,12 @@ Geant4 backend is intentionally out of scope for the core pipeline.
 
 from .flux import sample_directions, sample_momenta, zenith_cdf_max
 from .scatter import highland_theta0
-from .simulator import MuonTruth, Simulator, simulate
+from .simulator import MuonTruth, SimConfig, Simulator, simulate
 
 __all__ = [
     "MuonTruth",
     "Simulator",
+    "SimConfig",
     "simulate",
     "sample_directions",
     "sample_momenta",

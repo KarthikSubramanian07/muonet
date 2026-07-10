@@ -1,0 +1,9 @@
+# The headline demo: a solid tungsten cube in air.
+# Reproduce a reconstruction from exactly this file:
+#   muonet recon --config configs/tungsten_cube.yaml --method poca
+scene: tungsten_cube
+detector: realistic_sipm
+dosage: 1024
+seed: 0
+grid_shape: [32, 32, 32]
+grid_size_cm: [32.0, 32.0, 32.0]

@@ -36,25 +36,39 @@ def _gaussian_kernel_1d(sigma: float, radius: int) -> np.ndarray:
 
 
 def gaussian_blur_3d(volume: np.ndarray, sigma: float = 1.5, radius: int = 3) -> np.ndarray:
-    """Separable 3D Gaussian blur with reflect padding (no SciPy dependency)."""
+    """Separable 3D Gaussian blur with reflect padding (no SciPy dependency).
+
+    Vectorized as a slide-and-sum over the (short) kernel taps rather than a
+    Python loop over every 1-D fiber. This is on the hot path for PoCA and SSIM.
+    """
     k = _gaussian_kernel_1d(sigma, radius)
     out = volume.astype(np.float64)
     for axis in range(volume.ndim):
         pad = [(0, 0)] * volume.ndim
         pad[axis] = (radius, radius)
         padded = np.pad(out, pad, mode="reflect")
-        moved = np.moveaxis(padded, axis, -1)
-        blurred = np.apply_along_axis(lambda m: np.convolve(m, k, mode="valid"), -1, moved)
-        out = np.moveaxis(blurred, -1, axis)
+        length = out.shape[axis]
+        acc = np.zeros_like(out)
+        for tap, weight in enumerate(k):
+            sl = [slice(None)] * volume.ndim
+            sl[axis] = slice(tap, tap + length)
+            acc += weight * padded[tuple(sl)]
+        out = acc
     return out
+
+
+# Cap for a perfect (zero-MSE) match. A finite value keeps results JSON-safe
+# (the browser viewer parses these; JSON has no Infinity) while still reading as
+# "as good as it gets".
+PSNR_PERFECT_DB = 100.0
 
 
 def psnr(pred: np.ndarray, target: np.ndarray, data_range: float = 1.0) -> float:
     """Peak signal-to-noise ratio in dB. Higher is better."""
     mse = float(np.mean((pred - target) ** 2))
     if mse <= 0.0:
-        return float("inf")
-    return float(10.0 * np.log10(data_range**2 / mse))
+        return PSNR_PERFECT_DB
+    return float(min(10.0 * np.log10(data_range**2 / mse), PSNR_PERFECT_DB))
 
 
 def ssim(pred: np.ndarray, target: np.ndarray, data_range: float = 1.0) -> float:

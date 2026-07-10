@@ -9,7 +9,7 @@ module turns those ideal crossings into realistic measured hits.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import numpy as np
 
@@ -26,7 +26,10 @@ class SimConfig:
     momentum_median_gev: float = 3.0
     momentum_sigma_log: float = 0.6
     origin_margin_cm: float = 5.0
-    batch_multiplier: int = 6  # oversample candidates to hit the accepted target
+    batch_multiplier: int = 4  # oversample candidates to hit the accepted target
+    # Cap candidates per generation pass so the transient (m, n_steps, 3) arrays
+    # stay small on memory-constrained machines. More passes, bounded memory.
+    max_chunk: int = 4096
 
 
 @dataclass
@@ -142,8 +145,17 @@ class Simulator:
         total = 0
         scalar_keys = {"top_plane_z", "bottom_plane_z"}
         plane_z = {}
+        passes = 0
+        max_passes = max(256, 64 * (n // cfg.max_chunk + 1))
         while total < n:
-            m = max(int((n - total) * cfg.batch_multiplier), 1024)
+            if passes >= max_passes:
+                raise RuntimeError(
+                    f"only {total} of {n} muons cleared the detector acceptance after "
+                    f"{passes} passes. The scene may sit outside the acceptance, or "
+                    f"plane_half_extent_cm may be too small for the geometry."
+                )
+            passes += 1
+            m = min(cfg.max_chunk, max(int((n - total) * cfg.batch_multiplier), 512))
             cand = self._generate_candidates(rng, m)
             keep = self._accepted(cand)
             for key, value in cand.items():

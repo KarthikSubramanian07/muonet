@@ -60,6 +60,42 @@ class Measurement:
     def __len__(self) -> int:
         return self.in_point.shape[0]
 
+    @staticmethod
+    def concat(parts: list[Measurement]) -> Measurement:
+        """Concatenate several measurements (assumed same config and plane count)."""
+        first = parts[0]
+        return Measurement(
+            top_hits=np.concatenate([p.top_hits for p in parts]),
+            bottom_hits=np.concatenate([p.bottom_hits for p in parts]),
+            top_mask=np.concatenate([p.top_mask for p in parts]),
+            bottom_mask=np.concatenate([p.bottom_mask for p in parts]),
+            in_point=np.concatenate([p.in_point for p in parts]),
+            in_dir=np.concatenate([p.in_dir for p in parts]),
+            out_point=np.concatenate([p.out_point for p in parts]),
+            out_dir=np.concatenate([p.out_dir for p in parts]),
+            scatter_angle=np.concatenate([p.scatter_angle for p in parts]),
+            momentum_gev=np.concatenate([p.momentum_gev for p in parts]),
+            valid=np.concatenate([p.valid for p in parts]),
+            config=first.config,
+        )
+
+    def head(self, n: int) -> Measurement:
+        """Return the first ``n`` muons."""
+        return Measurement(
+            top_hits=self.top_hits[:n],
+            bottom_hits=self.bottom_hits[:n],
+            top_mask=self.top_mask[:n],
+            bottom_mask=self.bottom_mask[:n],
+            in_point=self.in_point[:n],
+            in_dir=self.in_dir[:n],
+            out_point=self.out_point[:n],
+            out_dir=self.out_dir[:n],
+            scatter_angle=self.scatter_angle[:n],
+            momentum_gev=self.momentum_gev[:n],
+            valid=self.valid[:n],
+            config=self.config,
+        )
+
     def select_valid(self) -> Measurement:
         """Return a copy keeping only reconstructable muons."""
         keep = self.valid

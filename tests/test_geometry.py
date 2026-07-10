@@ -15,6 +15,13 @@ def test_voxel_grid_bounds_and_mapping():
     assert np.allclose(v, 5.0)
 
 
+def test_voxel_grid_contains():
+    grid = VoxelGrid(shape=(10, 10, 10), size_cm=(20, 20, 20))
+    pts = np.array([[0.0, 0.0, 0.0], [9.9, 0.0, 0.0], [10.5, 0.0, 0.0]])
+    inside = grid.contains(pts)
+    assert inside[0] and inside[1] and not inside[2]
+
+
 def test_voxel_centers_shape_and_extent():
     grid = VoxelGrid(shape=(4, 5, 6), size_cm=(4, 5, 6))
     centers = grid.voxel_centers()

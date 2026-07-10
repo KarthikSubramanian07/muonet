@@ -10,7 +10,7 @@ spectrum). Every knob here degrades reconstruction in a way you can measure.
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
@@ -42,14 +42,6 @@ class DetectorConfig:
     momentum_known: bool
     assumed_momentum_gev: float
     min_planes_per_station: int = 2
-
-    def to_dict(self) -> dict:
-        return asdict(self)
-
-    @classmethod
-    def from_dict(cls, data: dict) -> DetectorConfig:
-        fields = {f: data[f] for f in cls.__dataclass_fields__ if f in data}
-        return cls(**fields)
 
 
 DETECTOR_PRESETS: dict[str, DetectorConfig] = {

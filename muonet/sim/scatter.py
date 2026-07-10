@@ -23,7 +23,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from .flux import MUON_MASS_MEV, beta_from_momentum
+from .flux import beta_from_momentum
 
 HIGHLAND_MEV = 13.6  # MeV, the Highland constant
 
@@ -88,4 +88,4 @@ def space_angle(in_dir: np.ndarray, out_dir: np.ndarray) -> np.ndarray:
     return np.arccos(dots)
 
 
-__all__ = ["highland_theta0", "sample_scatter", "space_angle", "MUON_MASS_MEV"]
+__all__ = ["highland_theta0", "sample_scatter", "space_angle"]

@@ -10,7 +10,7 @@ All lengths are centimeters.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import numpy as np
 
@@ -161,10 +161,6 @@ class DetectorGeometry:
     @property
     def top_z(self) -> float:
         return float(self.top_plane_z().max())
-
-    @property
-    def bottom_z(self) -> float:
-        return float(self.bottom_plane_z().min())
 
     def in_acceptance(self, xy: np.ndarray) -> np.ndarray:
         """Whether (x, y) points (..., 2) land on the sensitive area."""
