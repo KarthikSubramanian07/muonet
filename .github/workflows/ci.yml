@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install CPU PyTorch (no CUDA download)
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install muonet
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check muonet tests
+
+      - name: Unit tests
+        run: pytest -q
+
+      - name: Smoke test the full pipeline (analytic sim, CPU, no Geant4/GPU)
+        run: |
+          muonet info
+          muonet recon --scene tungsten_cube --dosage 256 --method poca mlem
+          muonet train --quick --quiet --out /tmp/ckpt.pt
+          muonet bench --quick --checkpoint /tmp/ckpt.pt --out /tmp/bench
+          muonet export --checkpoint /tmp/ckpt.pt --scenes tungsten_cube \
+            --dosages 256 1024 --out /tmp/volumes
+          test -f /tmp/volumes/manifest.json
+
+  viewer:
+    name: viewer build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: viewer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: viewer/package-lock.json
+      - run: npm ci
+      - run: npm run build

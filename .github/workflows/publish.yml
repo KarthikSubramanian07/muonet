@@ -1,0 +1,30 @@
+name: Publish to PyPI
+
+# Publishes the muonet package to PyPI when a version tag is pushed. Uses PyPI
+# Trusted Publishing (OIDC), so no API token is stored: configure the trusted
+# publisher once at https://pypi.org/manage/project/muonet/settings/publishing/
+# (workflow: publish.yml, environment: pypi). Until that is set up this workflow
+# simply does not run (no tags pushed).
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build sdist and wheel
+        run: |
+          pip install build
+          python -m build
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
