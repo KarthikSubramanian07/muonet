@@ -144,6 +144,8 @@ input {
   display: block;
   width: 100% !important;
   height: 100% !important;
+  /* Let one-finger drag rotate the model instead of scrolling the page. */
+  touch-action: none;
 }
 .canvas-badge {
   position: absolute;
@@ -357,4 +359,54 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+/* Tablet and phone. The stage already collapses to one column at 860px; these
+   keep the canvas a sensible size and tighten spacing on small screens. */
+@media (max-width: 860px) {
+  .canvas-card {
+    min-height: 300px;
+    max-height: 78vh;
+  }
+}
+
+@media (max-width: 520px) {
+  .shell {
+    padding: 0 14px 56px;
+  }
+  .hero {
+    padding: 30px 0 8px;
+  }
+  .topbar nav {
+    gap: 12px;
+    font-size: 13px;
+  }
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .canvas-badge {
+    font-size: 11px;
+  }
+}
+
+/* Bigger, comfortable tap targets on touch devices. */
+@media (hover: none) and (pointer: coarse) {
+  .segment button {
+    padding: 10px 4px;
+  }
+  .switch {
+    width: 48px;
+    height: 28px;
+  }
+  .switch::after {
+    width: 22px;
+    height: 22px;
+  }
+  .switch[aria-pressed="true"]::after {
+    transform: translateX(20px);
+  }
+  .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
 }

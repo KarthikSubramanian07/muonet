@@ -44,8 +44,12 @@ export default function VolumeCanvas(props: Props) {
       return;
     }
 
+    // Mobile GPUs are weaker, so trim the device-pixel-ratio and the raymarch
+    // step count on small / touch screens to keep it smooth.
+    const isMobile =
+      window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 640;
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.75 : 2));
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);
 
@@ -58,6 +62,7 @@ export default function VolumeCanvas(props: Props) {
     controls.dampingFactor = 0.08;
     controls.minDistance = 0.9;
     controls.maxDistance = 6;
+    controls.enablePan = false; // keep the object centered; nicer on touch
 
     const cmapData = buildColormapLUT(props.colormap);
     const cmapTexture = new THREE.DataTexture(cmapData, 256, 1, THREE.RGBAFormat);
@@ -74,7 +79,7 @@ export default function VolumeCanvas(props: Props) {
         u_clim: { value: new THREE.Vector2(0.0, 1.0) },
         u_threshold: { value: props.threshold },
         u_opacity: { value: props.opacity },
-        u_steps: { value: 192 },
+        u_steps: { value: isMobile ? 128 : 192 },
         u_mode: { value: RENDER_MODES[props.mode] },
       },
       vertexShader,
