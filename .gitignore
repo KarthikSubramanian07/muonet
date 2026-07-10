@@ -16,9 +16,12 @@ htmlcov/
 # Muonet artifacts (regenerated from seeds; not committed)
 data/
 runs/
-checkpoints/
 *.pt
 *.ckpt
+# ...except the small reference checkpoint, committed so the benchmark table
+# reproduces from a deterministic CPU forward pass without retraining.
+!checkpoints/
+!checkpoints/muonet.pt
 
 # Node / Next.js viewer
 viewer/node_modules/
