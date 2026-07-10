@@ -28,6 +28,7 @@ jobs:
     steps:
       - name: Check for Cloudflare credentials
         id: creds
+        working-directory: ${{ github.workspace }}
         run: |
           if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
