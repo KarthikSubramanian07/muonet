@@ -20,7 +20,9 @@ def seed_everything(seed: int) -> None:
     """
     os.environ["PYTHONHASHSEED"] = str(seed)
     random.seed(seed)
-    np.random.seed(seed)
+    # Belt and suspenders: the pipeline uses explicit Generators, but this pins
+    # the legacy global state too for any third-party code that reads it.
+    np.random.seed(seed)  # noqa: NPY002
     try:
         import torch
 

@@ -65,7 +65,6 @@ def integrate_path(
           - ``dense_path_cm``: ``(n,)`` path length through non-air material,
             used to scale the lateral scattering offset.
     """
-    n = origins.shape[0]
     t_enter, t_exit, hit = ray_aabb(origins, directions, grid.lower, grid.upper)
 
     # Fallback vertex: where the ray crosses the object mid-plane z = center_z.
