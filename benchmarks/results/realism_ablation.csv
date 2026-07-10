@@ -1,0 +1,9 @@
+method,scene,detector,dosage,psnr,ssim,iou,accuracy,runtime_s
+poca,tungsten_cube,ideal,1024,15.8182,0.8448,0.1603,0.9685,0.0078
+learned,tungsten_cube,ideal,1024,14.86,0.0304,0.3904,0.9614,0.0687
+poca,tungsten_cube,research,1024,15.6119,0.4014,0.1714,0.9669,0.0119
+learned,tungsten_cube,research,1024,15.4872,0.033,0.5087,0.9741,0.1045
+poca,tungsten_cube,realistic_sipm,1024,15.0868,0.2472,0.1303,0.964,0.0079
+learned,tungsten_cube,realistic_sipm,1024,15.2661,0.0325,0.5421,0.9751,0.072
+poca,tungsten_cube,battery_limited,1024,14.0453,0.1968,0.033,0.9571,0.0089
+learned,tungsten_cube,battery_limited,1024,12.4895,0.0131,0.0349,0.9494,0.101

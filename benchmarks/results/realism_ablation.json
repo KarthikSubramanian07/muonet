@@ -1,0 +1,90 @@
+[
+  {
+    "method": "poca",
+    "scene": "tungsten_cube",
+    "detector": "ideal",
+    "dosage": 1024,
+    "psnr": 15.8182,
+    "ssim": 0.8448,
+    "iou": 0.1603,
+    "accuracy": 0.9685,
+    "runtime_s": 0.0078
+  },
+  {
+    "method": "learned",
+    "scene": "tungsten_cube",
+    "detector": "ideal",
+    "dosage": 1024,
+    "psnr": 14.86,
+    "ssim": 0.0304,
+    "iou": 0.3904,
+    "accuracy": 0.9614,
+    "runtime_s": 0.0687
+  },
+  {
+    "method": "poca",
+    "scene": "tungsten_cube",
+    "detector": "research",
+    "dosage": 1024,
+    "psnr": 15.6119,
+    "ssim": 0.4014,
+    "iou": 0.1714,
+    "accuracy": 0.9669,
+    "runtime_s": 0.0119
+  },
+  {
+    "method": "learned",
+    "scene": "tungsten_cube",
+    "detector": "research",
+    "dosage": 1024,
+    "psnr": 15.4872,
+    "ssim": 0.033,
+    "iou": 0.5087,
+    "accuracy": 0.9741,
+    "runtime_s": 0.1045
+  },
+  {
+    "method": "poca",
+    "scene": "tungsten_cube",
+    "detector": "realistic_sipm",
+    "dosage": 1024,
+    "psnr": 15.0868,
+    "ssim": 0.2472,
+    "iou": 0.1303,
+    "accuracy": 0.964,
+    "runtime_s": 0.0079
+  },
+  {
+    "method": "learned",
+    "scene": "tungsten_cube",
+    "detector": "realistic_sipm",
+    "dosage": 1024,
+    "psnr": 15.2661,
+    "ssim": 0.0325,
+    "iou": 0.5421,
+    "accuracy": 0.9751,
+    "runtime_s": 0.072
+  },
+  {
+    "method": "poca",
+    "scene": "tungsten_cube",
+    "detector": "battery_limited",
+    "dosage": 1024,
+    "psnr": 14.0453,
+    "ssim": 0.1968,
+    "iou": 0.033,
+    "accuracy": 0.9571,
+    "runtime_s": 0.0089
+  },
+  {
+    "method": "learned",
+    "scene": "tungsten_cube",
+    "detector": "battery_limited",
+    "dosage": 1024,
+    "psnr": 12.4895,
+    "ssim": 0.0131,
+    "iou": 0.0349,
+    "accuracy": 0.9494,
+    "runtime_s": 0.101
+  }
+]
