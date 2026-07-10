@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# Muonet artifacts (regenerated from seeds; not committed)
+data/
+runs/
+checkpoints/
+*.pt
+*.ckpt
+
+# Node / Next.js viewer
+viewer/node_modules/
+viewer/.next/
+viewer/out/
+viewer/.open-next/
+viewer/.wrangler/
+viewer/.vercel/
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
