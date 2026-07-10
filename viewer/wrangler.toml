@@ -1,0 +1,6 @@
+# Cloudflare Pages project config for the Muonet viewer.
+# `npm run deploy` (or the deploy-viewer GitHub Action) builds ./out and ships
+# it here. Static files only: no Worker, no bindings, nothing to pay for.
+name = "muonet"
+pages_build_output_dir = "out"
+compatibility_date = "2025-01-01"

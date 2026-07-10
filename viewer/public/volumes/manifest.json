@@ -1,0 +1,326 @@
+{
+  "scenes": [
+    {
+      "name": "tungsten_cube",
+      "label": "Tungsten cube",
+      "ground_truth": "tungsten_cube_gt",
+      "volumes": {
+        "128": {
+          "poca": {
+            "stem": "tungsten_cube_poca_128",
+            "psnr": 14.258,
+            "ssim": 0.632,
+            "iou": 0.031,
+            "accuracy": 0.959
+          },
+          "learned": {
+            "stem": "tungsten_cube_learned_128",
+            "psnr": 12.812,
+            "ssim": 0.02,
+            "iou": 0.349,
+            "accuracy": 0.963
+          }
+        },
+        "256": {
+          "poca": {
+            "stem": "tungsten_cube_poca_256",
+            "psnr": 14.869,
+            "ssim": 0.511,
+            "iou": 0.084,
+            "accuracy": 0.965
+          },
+          "learned": {
+            "stem": "tungsten_cube_learned_256",
+            "psnr": 14.831,
+            "ssim": 0.028,
+            "iou": 0.423,
+            "accuracy": 0.973
+          }
+        },
+        "512": {
+          "poca": {
+            "stem": "tungsten_cube_poca_512",
+            "psnr": 15.016,
+            "ssim": 0.396,
+            "iou": 0.097,
+            "accuracy": 0.963
+          },
+          "learned": {
+            "stem": "tungsten_cube_learned_512",
+            "psnr": 14.992,
+            "ssim": 0.031,
+            "iou": 0.532,
+            "accuracy": 0.978
+          }
+        },
+        "1024": {
+          "poca": {
+            "stem": "tungsten_cube_poca_1024",
+            "psnr": 15.087,
+            "ssim": 0.247,
+            "iou": 0.13,
+            "accuracy": 0.964
+          },
+          "learned": {
+            "stem": "tungsten_cube_learned_1024",
+            "psnr": 15.266,
+            "ssim": 0.032,
+            "iou": 0.542,
+            "accuracy": 0.975
+          }
+        },
+        "4096": {
+          "poca": {
+            "stem": "tungsten_cube_poca_4096",
+            "psnr": 16.209,
+            "ssim": 0.216,
+            "iou": 0.21,
+            "accuracy": 0.969
+          },
+          "learned": {
+            "stem": "tungsten_cube_learned_4096",
+            "psnr": 15.691,
+            "ssim": 0.035,
+            "iou": 0.513,
+            "accuracy": 0.973
+          }
+        },
+        "8192": {
+          "poca": {
+            "stem": "tungsten_cube_poca_8192",
+            "psnr": 16.458,
+            "ssim": 0.198,
+            "iou": 0.261,
+            "accuracy": 0.971
+          },
+          "learned": {
+            "stem": "tungsten_cube_learned_8192",
+            "psnr": 16.076,
+            "ssim": 0.035,
+            "iou": 0.492,
+            "accuracy": 0.973
+          }
+        }
+      }
+    },
+    {
+      "name": "lead_sphere",
+      "label": "Lead sphere",
+      "ground_truth": "lead_sphere_gt",
+      "volumes": {
+        "128": {
+          "poca": {
+            "stem": "lead_sphere_poca_128",
+            "psnr": 17.162,
+            "ssim": 0.618,
+            "iou": 0.031,
+            "accuracy": 0.962
+          },
+          "learned": {
+            "stem": "lead_sphere_learned_128",
+            "psnr": 11.564,
+            "ssim": 0.009,
+            "iou": 0.186,
+            "accuracy": 0.953
+          }
+        },
+        "256": {
+          "poca": {
+            "stem": "lead_sphere_poca_256",
+            "psnr": 17.237,
+            "ssim": 0.493,
+            "iou": 0.073,
+            "accuracy": 0.963
+          },
+          "learned": {
+            "stem": "lead_sphere_learned_256",
+            "psnr": 15.15,
+            "ssim": 0.027,
+            "iou": 0.459,
+            "accuracy": 0.979
+          }
+        },
+        "512": {
+          "poca": {
+            "stem": "lead_sphere_poca_512",
+            "psnr": 17.021,
+            "ssim": 0.359,
+            "iou": 0.078,
+            "accuracy": 0.963
+          },
+          "learned": {
+            "stem": "lead_sphere_learned_512",
+            "psnr": 15.511,
+            "ssim": 0.028,
+            "iou": 0.477,
+            "accuracy": 0.979
+          }
+        },
+        "1024": {
+          "poca": {
+            "stem": "lead_sphere_poca_1024",
+            "psnr": 16.476,
+            "ssim": 0.179,
+            "iou": 0.097,
+            "accuracy": 0.961
+          },
+          "learned": {
+            "stem": "lead_sphere_learned_1024",
+            "psnr": 15.256,
+            "ssim": 0.03,
+            "iou": 0.492,
+            "accuracy": 0.976
+          }
+        },
+        "4096": {
+          "poca": {
+            "stem": "lead_sphere_poca_4096",
+            "psnr": 18.162,
+            "ssim": 0.121,
+            "iou": 0.152,
+            "accuracy": 0.968
+          },
+          "learned": {
+            "stem": "lead_sphere_learned_4096",
+            "psnr": 15.42,
+            "ssim": 0.03,
+            "iou": 0.473,
+            "accuracy": 0.971
+          }
+        },
+        "8192": {
+          "poca": {
+            "stem": "lead_sphere_poca_8192",
+            "psnr": 17.779,
+            "ssim": 0.077,
+            "iou": 0.244,
+            "accuracy": 0.97
+          },
+          "learned": {
+            "stem": "lead_sphere_learned_8192",
+            "psnr": 16.47,
+            "ssim": 0.031,
+            "iou": 0.574,
+            "accuracy": 0.98
+          }
+        }
+      }
+    },
+    {
+      "name": "iron_vs_tungsten",
+      "label": "Iron vs tungsten",
+      "ground_truth": "iron_vs_tungsten_gt",
+      "volumes": {
+        "128": {
+          "poca": {
+            "stem": "iron_vs_tungsten_poca_128",
+            "psnr": 14.626,
+            "ssim": 0.58,
+            "iou": 0.0,
+            "accuracy": 0.965
+          },
+          "learned": {
+            "stem": "iron_vs_tungsten_learned_128",
+            "psnr": 12.851,
+            "ssim": 0.008,
+            "iou": 0.074,
+            "accuracy": 0.947
+          }
+        },
+        "256": {
+          "poca": {
+            "stem": "iron_vs_tungsten_poca_256",
+            "psnr": 15.167,
+            "ssim": 0.476,
+            "iou": 0.056,
+            "accuracy": 0.969
+          },
+          "learned": {
+            "stem": "iron_vs_tungsten_learned_256",
+            "psnr": 13.13,
+            "ssim": 0.022,
+            "iou": 0.136,
+            "accuracy": 0.952
+          }
+        },
+        "512": {
+          "poca": {
+            "stem": "iron_vs_tungsten_poca_512",
+            "psnr": 15.861,
+            "ssim": 0.397,
+            "iou": 0.098,
+            "accuracy": 0.97
+          },
+          "learned": {
+            "stem": "iron_vs_tungsten_learned_512",
+            "psnr": 14.946,
+            "ssim": 0.03,
+            "iou": 0.51,
+            "accuracy": 0.98
+          }
+        },
+        "1024": {
+          "poca": {
+            "stem": "iron_vs_tungsten_poca_1024",
+            "psnr": 15.238,
+            "ssim": 0.23,
+            "iou": 0.101,
+            "accuracy": 0.968
+          },
+          "learned": {
+            "stem": "iron_vs_tungsten_learned_1024",
+            "psnr": 15.211,
+            "ssim": 0.035,
+            "iou": 0.494,
+            "accuracy": 0.982
+          }
+        },
+        "4096": {
+          "poca": {
+            "stem": "iron_vs_tungsten_poca_4096",
+            "psnr": 16.518,
+            "ssim": 0.131,
+            "iou": 0.213,
+            "accuracy": 0.975
+          },
+          "learned": {
+            "stem": "iron_vs_tungsten_learned_4096",
+            "psnr": 15.92,
+            "ssim": 0.034,
+            "iou": 0.508,
+            "accuracy": 0.979
+          }
+        },
+        "8192": {
+          "poca": {
+            "stem": "iron_vs_tungsten_poca_8192",
+            "psnr": 17.153,
+            "ssim": 0.149,
+            "iou": 0.253,
+            "accuracy": 0.977
+          },
+          "learned": {
+            "stem": "iron_vs_tungsten_learned_8192",
+            "psnr": 15.892,
+            "ssim": 0.034,
+            "iou": 0.467,
+            "accuracy": 0.976
+          }
+        }
+      }
+    }
+  ],
+  "dosages": [
+    128,
+    256,
+    512,
+    1024,
+    4096,
+    8192
+  ],
+  "methods": [
+    "poca",
+    "learned"
+  ],
+  "detector": "realistic_sipm"
+}

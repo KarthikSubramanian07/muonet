@@ -1,0 +1,14 @@
+{
+  "shape": [
+    32,
+    32,
+    32
+  ],
+  "dtype": "uint8",
+  "layout": "x-fastest",
+  "value_range": [
+    0.0,
+    1.0
+  ],
+  "bin": "lead_sphere_learned_128.bin"
+}
