@@ -9,7 +9,14 @@ RMS angle (PDG "Passage of particles through matter"):
 For cosmic muons, charge ``z = 1`` and ``beta ~ 1`` at the few-GeV momenta that
 dominate the flux. We keep the full beta and log terms anyway so the model
 stays honest at low momentum, where scattering is strongest and reconstruction
-is easiest. The formula is quoted as accurate to ~11% for 1e-3 < x/X0 < 100.
+is easiest.
+
+We use the current PDG 2024 log argument ``x z^2 / (X0 beta^2)`` (Eq. 34.16),
+which supersedes the older ``x / X0`` argument. The Gaussian core it describes
+covers the central ~98% of the projected angular distribution; older editions
+(and Lynch & Dahl 1991) quote ~11% accuracy for 1e-3 < x/X0 < 100. Reference:
+Lynch & Dahl, Nucl. Instrum. Meth. B58, 6 (1991); PDG Review of Particle
+Physics 2024, "Passage of particles through matter".
 """
 
 from __future__ import annotations
