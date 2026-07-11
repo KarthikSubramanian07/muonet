@@ -37,6 +37,11 @@ from .scenes import default_detector, list_scenes
 # --------------------------------------------------------------------------- #
 # Helpers
 # --------------------------------------------------------------------------- #
+def _cli_error(message: str) -> int:
+    print(message, file=sys.stderr)
+    return 2
+
+
 def _run_config_from_args(args) -> RunConfig:
     cfg = load_run_config(args.config) if getattr(args, "config", None) else RunConfig()
     for key in ("scene", "detector", "dosage", "seed"):
@@ -90,9 +95,15 @@ def cmd_info(args) -> int:
 def cmd_recon(args) -> int:
     cfg = _run_config_from_args(args)
     grid = cfg.grid()
-    scene = cfg.build_scene()
+    try:
+        scene = cfg.build_scene()
+    except KeyError as exc:
+        return _cli_error(str(exc))
     detector = default_detector()
-    config = get_detector_config(cfg.detector)
+    try:
+        config = get_detector_config(cfg.detector)
+    except KeyError as exc:
+        return _cli_error(str(exc))
     rng = np.random.default_rng(cfg.seed)
 
     print(
@@ -227,7 +238,10 @@ def cmd_export(args) -> int:
     detector = default_detector()
     scenes = args.scenes or ["tungsten_cube", "lead_sphere"]
     dosages = args.dosages or DOSAGE_LEVELS
-    config = get_detector_config(args.detector)
+    try:
+        config = get_detector_config(args.detector)
+    except KeyError as exc:
+        return _cli_error(str(exc))
 
     methods = ["poca"] + (["learned"] if learned is not None else [])
     manifest = {
@@ -238,7 +252,10 @@ def cmd_export(args) -> int:
     }
 
     for scene_name in scenes:
-        scene = build_scene(scene_name, grid)
+        try:
+            scene = build_scene(scene_name, grid)
+        except KeyError as exc:
+            return _cli_error(str(exc))
         entry = {
             "name": scene_name,
             "label": SCENE_LABELS.get(scene_name, scene_name),

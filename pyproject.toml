@@ -32,8 +32,8 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Image Processing",
 ]
 
-# Pinned in uv.lock for exact reproduction. Constraints here stay wide enough
-# to install cleanly on a laptop, a free Colab T4, or CI.
+# Version constraints here stay wide enough to install cleanly on a laptop,
+# a free Colab T4, or CI.
 dependencies = [
     "numpy>=1.24,<3",
     "torch>=2.2,<3",
