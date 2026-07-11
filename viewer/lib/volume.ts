@@ -57,7 +57,11 @@ export async function loadVolume(baseUrl: string, stem: string): Promise<LoadedV
     if (!r.ok) throw new Error(`header fetch failed: ${r.status}`);
     return r.json();
   });
-  const buffer = await fetch(`${baseUrl}/${header.bin}`, { cache: "force-cache" }).then((r) => {
+  const bin = header.bin?.split(/[/\\]/).pop() ?? "";
+  if (!bin || bin !== header.bin || bin.includes("..")) {
+    throw new Error(`invalid volume bin path: ${header.bin}`);
+  }
+  const buffer = await fetch(`${baseUrl}/${bin}`, { cache: "force-cache" }).then((r) => {
     if (!r.ok) throw new Error(`volume fetch failed: ${r.status}`);
     return r.arrayBuffer();
   });

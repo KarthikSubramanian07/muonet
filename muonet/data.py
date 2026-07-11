@@ -34,6 +34,8 @@ def collect_measurement(
     sim_config: SimConfig | None = None,
 ) -> Measurement:
     """Simulate until ``n_valid`` reconstructable muons are collected."""
+    if n_valid < 1:
+        raise ValueError(f"dosage must be >= 1, got {n_valid}")
     parts: list[Measurement] = []
     got = 0
     attempts = 0
