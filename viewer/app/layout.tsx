@@ -4,7 +4,7 @@ import "./globals.css";
 const SITE_URL = "https://muonet.pages.dev";
 const TITLE = "Muonet — see inside anything dense with cosmic rays";
 const DESCRIPTION =
-  "Muonet is an open-source muon scattering tomography toolkit. Simulate cosmic muons passing through dense objects, reconstruct the 3D interior, and drag a slider to watch a blurry blob resolve into a tungsten cube. Real detector physics, honest reproducible benchmarks.";
+  "Open-source muon scattering tomography: simulate cosmic muons through dense objects and reconstruct 3D interiors. Real detector physics, honest benchmarks.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
